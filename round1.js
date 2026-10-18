@@ -102,3 +102,32 @@ function convertSeconds(total) {
 console.log(convertSeconds(7509)); // "2h 05m 09s"
 console.log(convertSeconds(65));   // "0h 01m 05s"
 console.log(convertSeconds(0));    // "0h 00m 00s" (edge case)
+
+//changeMaker(amount) using Rwandan notes/coins [5000, 2000, 1000, 500, 100, 50,
+//20, 10, 5, 1], print how many of each are needed for the smallest number of pieces.
+//7385 → 1×5000, 1×2000, 3×100, 1×50, 1×20, 1×10, 1×5.
+//// Pseudocode:
+// List the denominations from largest to smallest.
+// Set the remaining amount to the given amount.
+// For each denomination, divide the remaining amount by it to find how many are needed.
+// Print the denomination and count if the count is greater than zero.
+// Subtract that value from the remaining amount.
+
+function changeMaker(amount) {
+  const denominations = [5000, 2000, 1000, 500, 100, 50, 20, 10, 5, 1];
+  let remaining = amount;
+
+  for (let i = 0; i < denominations.length; i++) {
+    const denomination = denominations[i];
+    const count = Math.floor(remaining / denomination);
+
+    if (count > 0) {
+      console.log(`${count}*${denomination}`);
+      remaining = remaining % denomination;
+    }
+  }
+}
+
+changeMaker(7385); // 1×5000, 1×2000, 3×100, 1×50, 1×20, 1×10, 1×5
+changeMaker(56);   // 1×50, 1×5, 1×1
+changeMaker(0);    // prints nothing (edge case)
