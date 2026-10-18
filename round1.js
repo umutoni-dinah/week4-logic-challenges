@@ -53,3 +53,29 @@ console.log(getBMICategory(50, 1.7)); // Underweight
 console.log(getBMICategory(68, 1.7)); // Normal
 console.log(getBMICategory(90, 1.7)); // Obese
 console.log(getBMICategory(70, 0));   // Invalid height (edge case)
+
+
+//motoFare(km) moto taxi fare: 300 RWF base for the first 2 km, then 107 RWF per extra
+//km (round up partial km with Math.ceil). Return 0 for km ≤ 0.
+//pseudocode:
+// If km is 0 or less, return 0.
+// If km is 2 or less, return the base fare of 300 RWF.
+// Otherwise, subtract 2 from km to get the extra distance.
+// Round the extra distance up to a whole kilometer.
+// Return 300 plus 107 RWF for each extra kilometer.
+
+function motoFare(km) {
+  if (km <= 0) {
+    return 0;
+  } else if (km <= 2) {
+    return 300;
+  } else {
+    const extraKm = Math.ceil(km - 2);
+    return 300 + extraKm * 107;
+  }
+}
+
+console.log(motoFare(2));   // 300
+console.log(motoFare(2.1)); // 407
+console.log(motoFare(5));   // 621
+console.log(motoFare(0));   // 0 (edge case)
