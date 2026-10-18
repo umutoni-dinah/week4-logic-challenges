@@ -79,3 +79,26 @@ console.log(motoFare(2));   // 300
 console.log(motoFare(2.1)); // 407
 console.log(motoFare(5));   // 621
 console.log(motoFare(0));   // 0 (edge case)
+
+//convertSeconds(total) return a string like &quot;2h 05m 09s&quot; (minutes and seconds always
+//two digits hint: padStart).
+//Pseudocode:
+// Find whole hours by dividing total seconds by 3600.
+// Find leftover minutes, then leftover seconds.
+// Pad minutes and seconds to two digits.
+// Return them as "Xh YYm ZZs".
+
+function convertSeconds(total) {
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+
+  const paddedMinutes = String(minutes).padStart(2, "0");
+  const paddedSeconds = String(seconds).padStart(2, "0");
+
+  return `${hours}h ${paddedMinutes}m ${paddedSeconds}s`;
+}
+
+console.log(convertSeconds(7509)); // "2h 05m 09s"
+console.log(convertSeconds(65));   // "0h 01m 05s"
+console.log(convertSeconds(0));    // "0h 00m 00s" (edge case)
