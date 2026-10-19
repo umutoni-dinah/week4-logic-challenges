@@ -48,3 +48,28 @@ console.log(isPrime(12)); // false
 console.log(isPrime(1));  // false (edge case)
 console.log(isPrime(-5)); // false
 
+//printPyramid(rows) for 4 rows:
+// Pseudocode:
+// Start with an empty pyramid string.
+// For each row from 1 to rows:
+//   Add 2 * row - 1 stars.
+//   Add a newline between rows.
+// Return the completed pyramid.
+
+function printPyramid(rows) {
+  let pyramid = "";
+
+  for (let row = 1; row <= rows; row++) {
+    for (let star = 1; star <= 2 * row - 1; star++) {
+      pyramid += "*";
+    }
+
+    if (row < rows) {
+      pyramid += "\n";
+    }
+  }
+
+  return pyramid;
+}
+
+console.log(printPyramid(4));
