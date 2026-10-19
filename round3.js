@@ -73,3 +73,40 @@ function printPyramid(rows) {
 }
 
 console.log(printPyramid(4));
+
+//fibonacci(n)returns a string of the first n Fibonacci numbers: fibonacci(8) → &quot;0, 1,
+//1, 2, 3, 5, 8, 13&quot;.
+// Pseudocode:
+// Start with the first two Fibonacci numbers: 0 and 1.
+// Repeat n times:
+//   Add the current number to the result string.
+//   Calculate the next number by adding the previous two.
+// Return the result string.
+
+function fibonacci(n) {
+  if (n <= 0) {
+    return "";
+  }
+
+  let first = 0;
+  let second = 1;
+  let result = "";
+
+  for (let i = 0; i < n; i++) {
+    if (i > 0) {
+      result += ", ";
+    }
+
+    result += first;
+
+    const next = first + second;
+    first = second;
+    second = next;
+  }
+
+  return result;
+}
+
+console.log(fibonacci(8)); // "0, 1, 1, 2, 3, 5, 8, 13"
+console.log(fibonacci(1)); // "0"
+console.log(fibonacci(0)); // "" (edge case)
