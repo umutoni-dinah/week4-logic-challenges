@@ -74,3 +74,32 @@ function isPalindrome(str) {
 console.log(isPalindrome("Never odd or even")); // true
 console.log(isPalindrome("Hello"));             // false
 console.log(isPalindrome("!!!"));               // true (edge case: no letters)
+
+//titleCase(str) "welcome to kigali tech hub" => "Welcome To Kigali Tech Hub"
+// Pseudocode:
+// Make the string lowercase and split it into words.
+// For each word, capitalize its first letter.
+// Join the words with spaces and return the result.
+
+function titleCase(str) {
+  const words = str.toLowerCase().split(" ");
+  let result = "";
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 0) {
+      words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+    }
+
+    if (i > 0) {
+      result += " ";
+    }
+
+    result += words[i];
+  }
+
+  return result;
+}
+
+console.log(titleCase("welcome to kigali tech hub")); // Welcome To Kigali Tech Hub
+console.log(titleCase("hELLO WORLD"));                // Hello World
+console.log(titleCase(""));                           // "" (edge case)
