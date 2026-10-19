@@ -140,3 +140,35 @@ function maskPhone(phone) {
 console.log(maskPhone("0788123456")); // "078****456"
 console.log(maskPhone("0712345678")); // "071****678"
 console.log(maskPhone("07812"));      // "Invalid" (edge case)
+
+
+//longestWord(sentence) return the longest word; if tied, the first one.
+// Pseudocode:
+// Set the current word and longest word to empty strings.
+// Loop through each character in the sentence.
+// If it is not a space, add it to the current word.
+// When a space or the end is reached, compare word lengths.
+// Save the word only if it is longer, so ties keep the first word.
+// Return the longest word.
+
+function longestWord(sentence) {
+  let currentWord = "";
+  let longest = "";
+
+  for (let i = 0; i <= sentence.length; i++) {
+    if (i < sentence.length && sentence[i] !== " ") {
+      currentWord += sentence[i];
+    } else {
+      if (currentWord.length > longest.length) {
+        longest = currentWord;
+      }
+      currentWord = "";
+    }
+  }
+
+  return longest;
+}
+
+console.log(longestWord("I love programming")); // "programming"
+console.log(longestWord("red blue tan"));       // "red" (tie: first word)
+console.log(longestWord(""));                   // "" (edge case)
