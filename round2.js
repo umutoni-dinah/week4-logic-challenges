@@ -103,3 +103,40 @@ function titleCase(str) {
 console.log(titleCase("welcome to kigali tech hub")); // Welcome To Kigali Tech Hub
 console.log(titleCase("hELLO WORLD"));                // Hello World
 console.log(titleCase(""));                           // "" (edge case)
+
+//maskPhone(phone) &quot;0788123456&quot; → &quot;078****456&quot;. Return &quot;Invalid&quot; unless it&#39;s 10
+//digits starting with 07.
+// Pseudocode:
+// Check that the phone has 10 characters and starts with "07".
+// Loop through every character; if any is not a digit, return "Invalid".
+// Build the result from the first 3 digits, 4 asterisks, and last 3 digits.
+
+function maskPhone(phone) {
+  if (phone.length !== 10 || phone[0] !== "0" || phone[1] !== "7") {
+    return "Invalid";
+  }
+
+  for (let i = 0; i < phone.length; i++) {
+    if (phone[i] < "0" || phone[i] > "9") {
+      return "Invalid";
+    }
+  }
+
+  let masked = "";
+
+  for (let i = 0; i < 3; i++) {
+    masked += phone[i];
+  }
+
+  masked += "****";
+
+  for (let i = 7; i < 10; i++) {
+    masked += phone[i];
+  }
+
+  return masked;
+}
+
+console.log(maskPhone("0788123456")); // "078****456"
+console.log(maskPhone("0712345678")); // "071****678"
+console.log(maskPhone("07812"));      // "Invalid" (edge case)
