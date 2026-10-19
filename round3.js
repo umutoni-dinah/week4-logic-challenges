@@ -110,3 +110,42 @@ function fibonacci(n) {
 console.log(fibonacci(8)); // "0, 1, 1, 2, 3, 5, 8, 13"
 console.log(fibonacci(1)); // "0"
 console.log(fibonacci(0)); // "" (edge case)
+
+//guessingGameSimulator(secret) simulates a computer guessing a number 1–100 with
+//binary search (always guessing the middle of the remaining range). Log each guess and
+//return how many guesses it took. It should never need more than 7.
+// Pseudocode:
+// Set the guessing range from 1 to 100 and the guess count to 0.
+// While the range is still valid:
+//   Guess the middle number and log it.
+//   Increase the guess count.
+//   If it matches secret, return the count.
+//   If the guess is too low, move the lower bound up.
+//   If it is too high, move the upper bound down.
+
+function guessingGameSimulator(secret) {
+  let low = 1;
+  let high = 100;
+  let guesses = 0;
+
+  while (low <= high) {
+    const guess = Math.floor((low + high) / 2);
+    guesses++;
+
+    console.log("Guess:", guess);
+
+    if (guess === secret) {
+      return guesses;
+    } else if (guess < secret) {
+      low = guess + 1;
+    } else {
+      high = guess - 1;
+    }
+  }
+
+  return guesses;
+}
+
+console.log("Guesses needed:", guessingGameSimulator(1));
+console.log("Guesses needed:", guessingGameSimulator(73));
+console.log("Guesses needed:", guessingGameSimulator(100)); // edge of the range
