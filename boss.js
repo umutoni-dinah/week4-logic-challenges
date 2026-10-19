@@ -46,3 +46,36 @@ function validatePassword(pw) {
 console.log(validatePassword("Hello123!")); // valid
 console.log(validatePassword("short"));     // several errors
 console.log(validatePassword("Good Pass1!")); // space error
+
+//romanNumeral(n) convert 1–3999 to Roman numerals. 1994 → "MCMXCIV".
+// Pseudocode:
+// If n is outside 1–3999, return "Invalid".
+// List Roman values and their matching symbols from largest to smallest.
+// For each value, while it fits into n:
+//   Add its symbol to the result.
+//   Subtract its value from n.
+// Return the result.
+
+function romanNumeral(n) {
+  if (n < 1 || n > 3999) {
+    return "Invalid";
+  }
+
+  const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  const symbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+  let result = "";
+
+  for (let i = 0; i < values.length; i++) {
+    while (n >= values[i]) {
+      result += symbols[i];
+      n -= values[i];
+    }
+  }
+
+  return result;
+}
+
+console.log(romanNumeral(1994)); // "MCMXCIV"
+console.log(romanNumeral(58));   // "LVIII"
+console.log(romanNumeral(3999)); // "MMMCMXCIX"
+console.log(romanNumeral(0));    // "Invalid" (edge case)
