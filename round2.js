@@ -172,3 +172,38 @@ function longestWord(sentence) {
 console.log(longestWord("I love programming")); // "programming"
 console.log(longestWord("red blue tan"));       // "red" (tie: first word)
 console.log(longestWord(""));                   // "" (edge case)
+
+//compress(str)run-length encoding: "aaabccdddd" → "a3b1c2d4".
+// Pseudocode:
+// Start with an empty result and a count of 1.
+// Loop through each character.
+// If it matches the previous character, increase the count.
+// Otherwise, add the previous character and its count to the result,
+// then reset the count to 1.
+// After the loop, add the final character and its count.
+// Return the result.
+
+function compress(str) {
+  if (str.length === 0) {
+    return "";
+  }
+
+  let result = "";
+  let count = 1;
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === str[i - 1]) {
+      count++;
+    } else {
+      result += str[i - 1] + count;
+      count = 1;
+    }
+  }
+
+  result += str[str.length - 1] + count;
+  return result;
+}
+
+console.log(compress("aaabccdddd")); // "a3b1c2d4"
+console.log(compress("xyz"));        // "x1y1z1"
+console.log(compress(""));           // "" (edge case)
