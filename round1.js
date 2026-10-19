@@ -5,6 +5,9 @@
 // Otherwise, if it divides evenly by 100, it is not.
 // Otherwise, if it divides evenly by 4, it is.
 // In all other cases, it is not
+
+// Readability vs. cleverness: Separate if statements show each leap-year rule clearly.
+// Combining them into one Boolean expression is shorter, but harder to follow.
 function isLeapYear(year) {
   if (year % 400 === 0) {
     return true;
