@@ -4,6 +4,9 @@
 // sumToFormula: Calculate n * (n + 1) / 2 and return the result.
 // Compare both answers in the tests.
 
+
+// Readability vs. cleverness: The loop clearly shows how 1 through n are added.
+// The formula below is shorter and faster, but may be less obvious at first.
 function sumTo(n) {
   let sum = 0;
 
